@@ -78,16 +78,16 @@ while True:
 
             if (((n1+n2)/2) + n3)/3 > 5:
                 #print("Aprovado!")
-                socket.send_string("Aprovado!")
+                socket.send_string("You passed the course!")
 
             else:
                 #print("Reprovado!")
-                socket.send_string("Reprovado!")
+                socket.send_string("You not passed the course!")
         else:
             #print("Reprovado!")
-            socket.send_string("Reprovado!")
+            socket.send_string("You not passed the course!")
 
-        print ("Solicitacao entregue!")
+        print ("Done!")
         print("-------------")
     
     if "peso" in str(message):

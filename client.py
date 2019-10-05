@@ -6,7 +6,7 @@ socket = context.socket(zmq.REQ)
 socket.connect("tcp://localhost:5555")
 
 while True:
-    #here the message depends on the question, even the length of the message will vary
+    #Here the message depends on the question, even the length of the message will vary
     question = input()
     socket.send_string (question)
 
