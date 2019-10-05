@@ -8,55 +8,60 @@ socket.bind("tcp://*:5555")
 while True:
     message = socket.recv()
 
-    #  Funcoes
-    if "salario" in str(message):
+    #Functions
+
+
+    #The message format is 
+    # (code,name,job_role,salary) separated with commas,w/o white spaces
+    #code here is the function you do want to use, in this case, is income
+    if "income" in str(message):
         aux = str(message)
-        cod,nome,cargo,sal = aux.split(",")
+        cod,name,role,sal = aux.split(",")
         sal,escape = sal.split("'")
 
-        if "operador" in cargo:
-            #print ("Novo salario:", float(int(sal)) *1.2)
-            socket.send_string("Novo salario: " + str(float(int(sal)) *1.2))
+        if "operador" in role:
+            socket.send_string("New income: " + str(float(int(sal)) *1.2))
 
-        elif "programador" in cargo:
-            #print ("Novo salario: ", float(int(sal))*1.18)
-            socket.send_string("Novo salario: " + str(float(int(sal)) *1.18))
+        elif "programmer" in role:
+            socket.send_string("New income: " + str(float(int(sal)) *1.18))
 
         else:
-            #print("Cargo inválido!")
-            socket.send_string("Cargo inválido!")
+            socket.send_string("Invalid job role!")
             
-        print ("Solicitacao entregue!")
+        print ("Done!")
         print("-------------")
 
-    if "maior" in str(message):
+    
+    #The message format is
+    # (code,name,gender,age) separated with commas,w/o white spaces
+    # code here is "bigger"  
+    if "bigger" in str(message):
         aux = str(message)
-        cod,nome,sexo,idade = aux.split(",")
-        idade,escape = idade.split("'")
+        cod,name,gender,age = aux.split(",")
+        age,escape = age.split("'")
 
-        if "masculino" in sexo:
-            if int(idade) < 18:
-                #print(nome + " ainda nao atingiu a maioridade!")
-                socket.send_string(nome + " ainda nao atingiu a maioridade!")
+        if "male" in gender:
+            if int(age) < 18:
+                socket.send_string(nome + " has not yet come of age!")
             else:
-                #print(nome + " ja atingiu a maioridade!")
-                socket.send_string(nome + " ja atingiu a maioridade!")
+                socket.send_string(nome + " came of age!")
 
-        elif "feminino" in sexo:
-            if int(idade) < 21:
-                #print(nome + " ainda nao atingiu a maioridade!")
-                socket.send_string(nome + " ainda nao atingiu a maioridade!")
+        elif "female" in gender:
+            if int(age) < 21:
+                socket.send_string(nome + " has not yet come of age!")
             else:
-                #print(nome + " ja atingiu a maioridade!")
-                socket.send_string(nome + " ja atingiu a maioridade!")
+                socket.send_string(nome + " came of age!")
 
         else:
-            #print("Sexo invalido!")
-            socket.send_string("Sexo invalido!")
-        print ("Solicitacao entregue!")
+            socket.send_string("We do not have support to your gender, but we accept your choice!")
+        print ("Done!")
         print("-------------")
-    
-    if "notas" in str(message):
+
+
+    #The message format is
+    # (code,score1,score2.score3) separated with commas,w/o white spaces
+    # code here is "score"
+    if "score" in str(message):
         aux = str(message)
         cod,n1,n2,n3 = aux.split(",")
         n3,escape = n3.split("'")
@@ -66,12 +71,10 @@ while True:
         n3 = float(n3)
 
         if ((n1+n2)/2) >= 7:
-            #print ("Aprovado!")
-            socket.send_string("Aprovado!")
+            socket.send_string("You passed the course!")
 
         elif ((n1+n2)/2) >= 3:
-            #print ("O aluno ainda nao foi aprovado, tera que fazer a terceira prova!")
-            socket.send_string("O aluno ainda nao foi aprovado, tera que fazer a terceira prova!")
+            socket.send_string("You have not passed the course yet, you must do the third test!")
 
             if (((n1+n2)/2) + n3)/3 > 5:
                 #print("Aprovado!")
