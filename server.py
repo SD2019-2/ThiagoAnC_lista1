@@ -15,7 +15,7 @@ while True:
     #code here is the function you do want to use, in this case, is "income"
     if "income" in str(message):
         aux = str(message)
-        cod,name,role,sal = aux.split(",")
+        code,name,role,sal = aux.split(",")
         sal,escape = sal.split("'")
 
         if "operador" in role:
@@ -36,7 +36,7 @@ while True:
     # code here is "adult"  
     if "adult" in str(message):
         aux = str(message)
-        cod,name,gender,age = aux.split(",")
+        code,name,gender,age = aux.split(",")
         age,escape = age.split("'")
 
         if "male" in gender:
@@ -62,7 +62,7 @@ while True:
     # code here is "score"
     if "score" in str(message):
         aux = str(message)
-        cod,n1,n2,n3 = aux.split(",")
+        code,n1,n2,n3 = aux.split(",")
         n3,escape = n3.split("'")
 
         n1 = float(n1)
@@ -95,7 +95,7 @@ while True:
     # code here is "weight"
     if "weight" in str(message):
         aux = str(message)
-        cod,height,gender = aux.split(",")
+        code,height,gender = aux.split(",")
         height,escape = height.split("'")
 
         height = float(height)
@@ -115,7 +115,7 @@ while True:
     # code here is "categ"
     if "categ" in str(message):
         aux = str(message)
-        cod,age = aux.split(",")
+        code,age = aux.split(",")
         age,escape = age.split("'")
 
         age = int(age)
@@ -142,7 +142,7 @@ while True:
     #code here is "net"
     if "net" in str(message):
         aux = str(message)
-        cod,name,level,gross,depend = aux.split(",")
+        code,name,level,gross,depend = aux.split(",")
         depend,escape = depend.split("'")
 
         gross = float(gross)
@@ -190,22 +190,25 @@ while True:
         print("Done!")
         print("-------------")
    
-    if "banco" in str(message):
+    
+    #The message format is
+    # (code,bank balance) where code is "bank"
+    if "bank" in str(message):
         aux = str(message)
-        cod,saldo = aux.split(",")
-        saldo,escape = saldo.split("'")
+        code,balance = aux.split(",")
+        balance,escape = balance.split("'")
 
-        if int(saldo) <= 200:
-            socket.send_string("Nao ha credito disponivel para um saldo de " + saldo)
-        elif int(saldo) <= 400:
-            socket.send_string("Temos 20%. de credito para um saldo de " + saldo)
-        elif int(saldo) <= 600:
-            socket.send_string("Temos 30%. de credito para um saldo de " + saldo)
-        elif int(saldo) > 600:
-            socket.send_string("Temos 40%. de credito para um saldo de " + saldo)
-        elif int(saldo) < 0:
-            socket.send_string("Dados invalidos")
-        print("Solicitacao entregue!")
+        if int(balance) <= 200:
+            socket.send_string("There is no bank loan to this balance:" + balance)
+        elif int(balance) <= 400:
+            socket.send_string("There is 20%. of loan to this balance: " + balance)
+        elif int(balance) <= 600:
+            socket.send_string("There is 30%. of loan to this balance: " + balance)
+        elif int(balance) > 600:
+            socket.send_string("There is 40%. of loan to this balance: " + balance)
+        elif int(balance) < 0:
+            socket.send_string("Invalid data!")
+        print("Done!")
         print("-------------")
 
     if "stop" in str(message):
