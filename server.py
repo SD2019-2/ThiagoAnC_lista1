@@ -13,7 +13,7 @@ while True:
 
     #The message format is 
     # (code,name,job_role,salary) separated with commas,w/o white spaces
-    #code here is the function you do want to use, in this case, is income
+    #code here is the function you do want to use, in this case, is "income"
     if "income" in str(message):
         aux = str(message)
         cod,name,role,sal = aux.split(",")
@@ -42,15 +42,15 @@ while True:
 
         if "male" in gender:
             if int(age) < 18:
-                socket.send_string(nome + " has not yet come of age!")
+                socket.send_string(name + " has not yet come of age!")
             else:
-                socket.send_string(nome + " came of age!")
+                socket.send_string(name + " came of age!")
 
         elif "female" in gender:
             if int(age) < 21:
-                socket.send_string(nome + " has not yet come of age!")
+                socket.send_string(name + " has not yet come of age!")
             else:
-                socket.send_string(nome + " came of age!")
+                socket.send_string(name + " came of age!")
 
         else:
             socket.send_string("Invalid format!")
@@ -90,80 +90,91 @@ while True:
         print ("Done!")
         print("-------------")
     
-    if "peso" in str(message):
+    
+    #The message format is
+    # (code,height,gender) separated with commas,w/o white spaces
+    # code here is "weight"
+    if "weight" in str(message):
         aux = str(message)
-        cod,altura,sexo = aux.split(",")
-        altura,escape = altura.split("'")
+        cod,height,gender = aux.split(",")
+        height,escape = height.split("'")
 
-        altura = float(altura)
+        height = float(height)
 
-        if "feminino" in sexo:
-            socket.send_string("Peso ideal: " + str(round(altura*62.1-44.7,2)))
-        elif "masculino" in sexo:
-            socket.send_string("Peso ideal: " + str(round(altura*72.7-58,2)))
+        if "female" in gender:
+            socket.send_string("Recommended weight: " + str(round(height*62.1-44.7,2)))
+        elif "male" in gender:
+            socket.send_string("Recommended weight: " + str(round(height*72.7-58,2)))
         else:
-            socket.send_string("Sexo invalido")
-        print ("Solicitacao entregue!")
+            socket.send_string("Invalid format!")
+        print ("Done!")
         print("-------------")
 
+
+    #The message format is
+    # (code,age) separated with commas,w/o white spaces
+    # code here is "categ"
     if "categ" in str(message):
         aux = str(message)
-        cod,idade = aux.split(",")
-        idade,escape = idade.split("'")
+        cod,age = aux.split(",")
+        age,escape = age.split("'")
 
-        idade = int(idade)
+        age = int(age)
 
-        if idade < 5:
-            socket.send_string("Idade insuficiente!")
-        elif idade <= 7:
-            socket.send_string("infantil A")
-        elif idade <= 10:
-            socket.send_string("infantil B")
-        elif idade <= 13:
-            socket.send_string("juvenil A")
-        elif idade <= 17:
-            socket.send_string("juvenil B")
-        elif idade >= 18:
-            socket.send_string("adulto")
+        if age < 5:
+            socket.send_string("Idade insuficiente") # Not enough age to swim
+        elif age <= 7:
+            socket.send_string("Infantil A") #Child 1
+        elif age <= 10:
+            socket.send_string("Infantil B") #Child 2
+        elif age <= 13:
+            socket.send_string("Juvenil A") #Teen 1
+        elif age <= 17:
+            socket.send_string("Juvenil B") #Teen 2
+        elif age >= 18:
+            socket.send_string("Adulto")    #Adulto
         else:
-            socket.send_string("Idade invalida!")
-        print ("Solicitacao entregue!")
+            socket.send_string("Invalid age!")
+        print ("Done!")
         print("-------------")
 
-    if "liquid" in str(message):
+    #The message format is
+    # (code,name,level,gross,depend) separated with commas,w/o white spaces
+    #code here is "net"
+    if "net" in str(message):
         aux = str(message)
-        cod,nome,nivel,brut,depend = aux.split(",")
+        cod,name,level,gross,depend = aux.split(",")
         depend,escape = depend.split("'")
 
-        brut = float(brut)
+        gross = float(gross)
 
-        if "a" in nivel:
+        if "a" in level:
             if int(depend) != 0:
-                socket.send_string("Nome: " + nome + " Nivel: " + nivel + " Salario liquido: " + str(brut*0.92)) 
+                socket.send_string("Name: " + name + " Level: " + level + " Salario liquido: " + str(gross*0.92)) 
             else:
-                socket.send_string("Nome: " + nome + " Nivel: " + nivel + " Salario liquido: " + str(brut*0.97))
+                socket.send_string("Name: " + name + " Level: " + level + " Salario liquido: " + str(gross*0.97))
         
-        elif "b" in nivel:
+        elif "b" in level:
             if int(depend) != 0:
-                socket.send_string("Nome: " + nome + " Nivel: " + nivel + " Salario liquido: " + str(brut*0.9)) 
+                socket.send_string("Name: " + name + " Level: " + level + " Salario liquido: " + str(gross*0.9)) 
             else:
-                socket.send_string("Nome: " + nome + " Nivel: " + nivel + " Salario liquido: " + str(brut*0.95))
+                socket.send_string("Name: " + name + " Level: " + level + " Salario liquido: " + str(gross*0.95))
         
-        elif "c" in nivel:
+        elif "c" in level:
             if int(depend) != 0:
-                socket.send_string("Nome: " + nome + " Nivel: " + nivel + " Salario liquido: " + str(brut*0.85)) 
+                socket.send_string("Name: " + name + " Level: " + level + " Salario liquido: " + str(gross*0.85)) 
             else:
-                socket.send_string("Nome: " + nome + " Nivel: " + nivel + " Salario liquido: " + str(brut*0.92))
+                socket.send_string("Name: " + name + " Level: " + level + " Salario liquido: " + str(gross*0.92))
 
-        elif "d" in nivel:
+        elif "d" in level:
             if int(depend) != 0:
-                socket.send_string("Nome: " + nome + " Nivel: " + nivel + " Salario liquido: " + str(brut*0.83)) 
+                socket.send_string("Name: " + name + " Level: " + level + " Salario liquido: " + str(gross*0.83)) 
             else:
-                socket.send_string("Nome: " + nome + " Nivel: " + nivel + " Salario liquido: " + str(brut*0.9))
+                socket.send_string("Name: " + name + " Level: " + level + " Salario liquido: " + str(gross*0.9))
 
         else:
-            socket.send_string("Dados invalidos!")
-        print("Solicitacao entregue!")
+            socket.send_string("Invalid data!")
+        print("Done!")
         print("-------------")
 
     if "aposenta" in str(message):
@@ -195,9 +206,6 @@ while True:
             socket.send_string("Dados invalidos")
         print("Solicitacao entregue!")
         print("-------------")
-
-    if "carta" in str(message):
-        print ("deu")
 
     if "stop" in str(message):
         break
