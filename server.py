@@ -10,7 +10,6 @@ while True:
 
     #Functions
 
-
     #The message format is 
     # (code,name,job_role,salary) separated with commas,w/o white spaces
     #code here is the function you do want to use, in this case, is "income"
@@ -34,8 +33,8 @@ while True:
     
     #The message format is
     # (code,name,gender,age) separated with commas,w/o white spaces
-    # code here is "bigger"  
-    if "bigger" in str(message):
+    # code here is "adult"  
+    if "adult" in str(message):
         aux = str(message)
         cod,name,gender,age = aux.split(",")
         age,escape = age.split("'")
@@ -177,16 +176,18 @@ while True:
         print("Done!")
         print("-------------")
 
-    if "aposenta" in str(message):
+    #The message format is
+    # (code,age,work time) where code is "retire"
+    if "retire" in str(message):
         aux = str(message)
-        cod,idade,servico = aux.split(",")
-        servico,escape = servico.split("'")
+        code,age,work = aux.split(",")
+        work,escape = work.split("'")
 
-        if int(idade) >=65 and int(servico) >=30:
-            socket.send_string("Pode descansar, a aposentadoria esta aprovada!")
+        if int(age) >=65 and int(work) >=30:
+            socket.send_string("You can retire, rest a little!")
         else:
-            socket.send_string("Aguenta um pouco que voce ainda pode ser explorado!")
-        print("Solicitacao entregue!")
+            socket.send_string("Ah...you are not able to retire yet, go to job!")
+        print("Done!")
         print("-------------")
    
     if "banco" in str(message):
