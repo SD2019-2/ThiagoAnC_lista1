@@ -53,7 +53,7 @@ while True:
                 socket.send_string(nome + " came of age!")
 
         else:
-            socket.send_string("We do not have support to your gender, but we accept your choice!")
+            socket.send_string("Invalid format!")
         print ("Done!")
         print("-------------")
 
