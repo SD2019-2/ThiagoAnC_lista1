@@ -6,14 +6,15 @@ socket = context.socket(zmq.REQ)
 socket.connect("tcp://localhost:5555")
 
 while True:
-    #print("Sending request %s …" % request)
-    questao = input()
-    socket.send_string (questao)
+    #here the message depends on the question, even the length of the message will vary
+    question = input()
+    socket.send_string (question)
 
-    #  Get the reply.
+    #Here gets the reply and shows it
     message = socket.recv()
     print("...")
 
-    if "stop" in questao:
+    if "stop" in question:
+        #Server will halt when it receives the "stop" message
         socket.send_string ("stop")
         break
