@@ -149,27 +149,27 @@ while True:
 
         if "a" in level:
             if int(depend) != 0:
-                socket.send_string("Name: " + name + " Level: " + level + " Salario liquido: " + str(gross*0.92)) 
+                socket.send_string("Name: " + name + " Level: " + level + " Net wage: " + str(gross*0.92)) 
             else:
-                socket.send_string("Name: " + name + " Level: " + level + " Salario liquido: " + str(gross*0.97))
+                socket.send_string("Name: " + name + " Level: " + level + " Net wage: " + str(gross*0.97))
         
         elif "b" in level:
             if int(depend) != 0:
-                socket.send_string("Name: " + name + " Level: " + level + " Salario liquido: " + str(gross*0.9)) 
+                socket.send_string("Name: " + name + " Level: " + level + " Net wage: " + str(gross*0.9)) 
             else:
-                socket.send_string("Name: " + name + " Level: " + level + " Salario liquido: " + str(gross*0.95))
+                socket.send_string("Name: " + name + " Level: " + level + " Net wage: " + str(gross*0.95))
         
         elif "c" in level:
             if int(depend) != 0:
-                socket.send_string("Name: " + name + " Level: " + level + " Salario liquido: " + str(gross*0.85)) 
+                socket.send_string("Name: " + name + " Level: " + level + " Net wage: " + str(gross*0.85)) 
             else:
-                socket.send_string("Name: " + name + " Level: " + level + " Salario liquido: " + str(gross*0.92))
+                socket.send_string("Name: " + name + " Level: " + level + " Net wage: " + str(gross*0.92))
 
         elif "d" in level:
             if int(depend) != 0:
-                socket.send_string("Name: " + name + " Level: " + level + " Salario liquido: " + str(gross*0.83)) 
+                socket.send_string("Name: " + name + " Level: " + level + " Net wage: " + str(gross*0.83)) 
             else:
-                socket.send_string("Name: " + name + " Level: " + level + " Salario liquido: " + str(gross*0.9))
+                socket.send_string("Name: " + name + " Level: " + level + " Net wage: " + str(gross*0.9))
 
         else:
             socket.send_string("Invalid data!")
